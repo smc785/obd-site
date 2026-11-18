@@ -435,7 +435,7 @@ g:has(> .eh:hover) > .e { stroke-width: 3.2; }
     <button id="bNone" type="button">Collapse all</button>
   </div>
 </header>
-<main id="main">
+<main id="main" class="rail-off">
   <div id="stage">
     <svg id="svg" role="img" aria-label="Optimum Biomaterial Designer: the design loop with the surrogate model builder and the selection-policy trainer beside it; each open structure is a square ring around a picture of what it does">
       <defs>
@@ -451,7 +451,7 @@ g:has(> .eh:hover) > .e { stroke-width: 3.2; }
       <button id="mBtn" class="ov" type="button" aria-expanded="false" aria-controls="mPanel">Modules <span class="car">▼</span></button>
       <div id="mPanel" hidden></div>
     </div>
-    <button id="railTg" class="railtg ov" type="button" aria-controls="info" aria-expanded="true"><span class="lbl">Show</span> <span class="car">‹</span></button>
+    <button id="railTg" class="railtg ov" type="button" aria-controls="info" aria-expanded="false"><span class="lbl">Show</span> <span class="car">‹</span></button>
     <div class="ctl">
       <div id="ctlPop" class="ctlpop" hidden role="dialog" aria-label="Controls">
         <h3>Controls</h3>
@@ -3522,7 +3522,7 @@ grip.addEventListener('keydown', e => {
   const cur = parseFloat(getComputedStyle(mainEl).getPropertyValue('--railw')) || 380;
   store.set('obd-railw', setRailW(cur + (e.key === 'ArrowLeft' ? 24 : -24)) + 'px');
 });
-{ const w = parseFloat(store.get('obd-railw')); if (w) setRailW(w); if (store.get('obd-rail') === '0') setRail(false, false); }
+{ const w = parseFloat(store.get('obd-railw')); if (w) setRailW(w); setRail(store.get('obd-rail') === '1', false); }  // hidden by default; stays open only for a viewer who chose "Show"
 
 // ================================================================== explainer rail
 const info = $('info');
